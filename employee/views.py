@@ -1,9 +1,12 @@
 from . models import *
+from knox.auth import TokenAuthentication
 from . serializers import *
-from rest_framework import generics, filters
+from rest_framework import generics, filters, permissions
 
 #Available asset view.
 class AssetList(generics.ListCreateAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = AssetSerializer
     
     def get_queryset(self):
@@ -14,6 +17,8 @@ class AssetList(generics.ListCreateAPIView):
         serializer.save(company = self.request.user)
 
 class AssetDetail(generics.RetrieveUpdateDestroyAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = AssetSerializer
 
     def get_queryset(self):
@@ -25,6 +30,8 @@ class AssetDetail(generics.RetrieveUpdateDestroyAPIView):
 
 #Available employe view.
 class EmployeeList(generics.ListCreateAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = EmployeeSerializer
 
     def get_queryset(self):
@@ -35,6 +42,8 @@ class EmployeeList(generics.ListCreateAPIView):
         serializer.save(company = self.request.user)
 
 class EmployeeDetail(generics.RetrieveUpdateDestroyAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = EmployeeSerializer
     
     def get_queryset(self):
@@ -46,6 +55,8 @@ class EmployeeDetail(generics.RetrieveUpdateDestroyAPIView):
         
 #Given asset view.  
 class GivenAssetList(generics.ListCreateAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
     filter_backends = (filters.SearchFilter,)
     search_fields = ['given_to__employee_id',]
     serializer_class = GivenAssetSerializer
@@ -55,6 +66,8 @@ class GivenAssetList(generics.ListCreateAPIView):
         return GivenAsset.objects.filter(given_to__company=user)
     
 class GivenAssetDetail(generics.RetrieveUpdateDestroyAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = GivenAssetSerializer
     
     def get_queryset(self):
