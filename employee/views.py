@@ -58,6 +58,7 @@ class GivenAssetList(generics.ListCreateAPIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [permissions .IsAuthenticated]
     #search funcionality based upon employee_id
+    permission_classes = [permissions.IsAuthenticated]
     filter_backends = (filters.SearchFilter,)
     search_fields = ['given_to__employee_id',]
     serializer_class = GivenAssetSerializer
