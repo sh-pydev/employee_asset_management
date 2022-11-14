@@ -14,7 +14,6 @@ class AssetList(generics.ListCreateAPIView):
         serializer.save(company = self.request.user)
 
 class AssetDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = AssetType.objects.all()
     serializer_class = AssetSerializer
 
     def get_queryset(self):
