@@ -56,7 +56,8 @@ class EmployeeDetail(generics.RetrieveUpdateDestroyAPIView):
 #Given asset view.  
 class GivenAssetList(generics.ListCreateAPIView):
     authentication_classes = [TokenAuthentication]
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions .IsAuthenticated]
+    #search funcionality based upon employee_id
     filter_backends = (filters.SearchFilter,)
     search_fields = ['given_to__employee_id',]
     serializer_class = GivenAssetSerializer
