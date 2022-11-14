@@ -1,7 +1,6 @@
 from . models import *
 from . serializers import *
-from rest_framework import generics
-from rest_framework import generics
+from rest_framework import generics, filters
 
 #Available asset view.
 class AssetList(generics.ListCreateAPIView):
@@ -48,6 +47,8 @@ class EmployeeDetail(generics.RetrieveUpdateDestroyAPIView):
         
 #Given asset view.  
 class GivenAssetList(generics.ListCreateAPIView):
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ['given_to__employee_id',]
     serializer_class = GivenAssetSerializer
     
     def get_queryset(self):
