@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     
     'employee.apps.EmployeeConfig',
     'rest_framework',
+    'knox',
 ]
 
 MIDDLEWARE = [
